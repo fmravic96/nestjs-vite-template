@@ -2,22 +2,6 @@
 
 This is a community-maintained example combining NestJS backend with Vite frontend in a Turborepo monorepo.
 
-## Using this example
-
-Run the following command:
-
-```bash
-npx create-turbo@latest -e with-nestjs
-```
-
-Then replace Next.js with Vite:
-
-```bash
-cd apps/web
-rm -rf .next next.config.js pages
-# Add your Vite setup here
-```
-
 ## What's inside?
 
 This Turborepo includes the following packages & apps:
