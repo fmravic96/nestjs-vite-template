@@ -1,8 +1,21 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { AppModule } from '@/app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    // The library will re-add the default body parsers for non-auth routes.
+    // https://github.com/ThallesP/nestjs-better-auth
+    bodyParser: false,
+  });
+  
+  const config = new DocumentBuilder()
+    .setTitle('API')
+    .setDescription('API description')
+    .setVersion('1.0')
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
 
   // Configure CORS for Vite frontend running on port 3000
   app.enableCors({
